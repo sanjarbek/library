@@ -1,0 +1,14 @@
+@(elements: helper.FieldElements)
+
+<div class="form-group @if(elements.hasErrors) {error}">
+    <label for="@elements.id">@elements.label</label>
+    <input type="text" class="form-control" id="@elements.field.id" name="@elements.field.name" value="@elements.field.value">
+@*    <small id="@(elements.id)HelpBlock" class="form-text text-muted">*@
+@*        @elements.infos.mkString(", ")*@
+@*    </small>*@
+    @if(elements.field.hasErrors) {
+    <div class="invalid-feedback">
+        @elements.field.errors.mkString(", ")
+    </div>
+    }
+</div>

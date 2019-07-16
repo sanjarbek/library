@@ -1,0 +1,37 @@
+@(loginForm: Form[LoginForm])(implicit request: MessagesRequestHeader)
+
+@import helper._
+@import helpers.B4._
+
+@request.flash.get("error").map { key =>
+    @request.messages(key)
+}
+
+@main("Sign In") {
+    <section id="cover">
+        <div id="cover-caption">
+            <div id="container" class="container">
+                <div class="row">
+                    <div class="col-sm-6 offset-sm-3 text-center">
+                        <h1 class="display-4">Library</h1>
+                        <div class="info-form">
+                        @form(routes.AppController.login()) {
+                            @inputText(loginForm("username"),
+                                Symbol("_label")->"Username",
+                            )
+                            @inputText(loginForm("password"),
+                                Symbol("_label")->"Password"
+                            )
+                            @CSRF.formField
+
+                            <div class="buttons">
+                                <button type="submit" class="btn btn-primary">Sign In</button>
+                            </div>
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

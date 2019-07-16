@@ -1,0 +1,17 @@
+isn=ISN
+title=Title
+author=Author
+exit=Exit
+book.created=You have successfully added a book!
+book.updated=You have successfully updated a book!
+book.not_found=Book not found
+add.new.book=Add new book
+add.book=Add book
+update.book=Update book
+books.page.title=Books
+book.create.page.title=Add new book
+book.update.page.title=Update book
+menu.list.books=Books
+menu.add.book=Add new book
+action.edit = Edit
+action.remove = Remove

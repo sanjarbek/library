@@ -1,0 +1,31 @@
+@(books: Seq[Book])(implicit request: UserRequest[AnyContent], messagesProvider: MessagesProvider)
+
+@import helper._
+
+@layouts.mainMenu(messagesProvider.messages("books.page.title")) {
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">@messagesProvider.messages("isn")</th>
+                <th scope="col">@messagesProvider.messages("title")</th>
+                <th scope="col">@messagesProvider.messages("author")</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @for( (book, index) <- books.zipWithIndex) {
+            <tr>
+                <th scope="row">@(index+1)</th>
+                <td>@book.isn</td>
+                <td>@book.title</td>
+                <td>@book.author</td>
+                <td style="text-align: right">
+                    <a class="btn btn-outline-primary"  href="/books/update/@book.id">@messagesProvider.messages("action.edit")</a>
+                    <a class="btn btn-outline-warning"  href="/books/delete/@book.id">@messagesProvider.messages("action.remove")</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

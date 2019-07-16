@@ -1,0 +1,27 @@
+@(updateBookForm: Form[UpdateBookForm], bookId: Long)(implicit request: UserRequest[AnyContent], messagesProvider: MessagesProvider)
+
+    @import helper._
+    @import helpers.B4
+    @import helpers.B4._
+
+    @request.flash.get("success").map { key =>
+        @messagesProvider.messages(key)
+    }
+
+    @layouts.mainMenu(messagesProvider.messages("book.update.page.title")) {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@messagesProvider.messages("update.book")</h5>
+                @form(routes.BookController.updateBook(bookId)) {
+                    @inputText(updateBookForm("isn"))
+                    @inputText(updateBookForm("title"))
+                    @inputText(updateBookForm("author"))
+                    @CSRF.formField
+
+                    <div class="buttons">
+                        <button type="submit" class="btn btn-primary">@messagesProvider.messages("update.book")</button>
+                    </div>
+                }
+            </div>
+        </div>
+    }

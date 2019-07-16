@@ -1,0 +1,22 @@
+@(bookForm: Form[CreateBookForm])(implicit request: UserRequest[AnyContent], messagesProvider: MessagesProvider)
+
+@import helper._
+@import helpers.B4._
+
+@layouts.mainMenu(messagesProvider.messages("book.create.page.title")) {
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@messagesProvider.messages("add.new.book")</h5>
+        @form(routes.BookController.addBook()) {
+            @inputText(bookForm("isn"))
+            @inputText(bookForm("title"))
+            @inputText(bookForm("author"))
+            @CSRF.formField
+
+            <div class="buttons">
+                <button type="submit" class="btn btn-primary">@messagesProvider.messages("add.book")</button>
+            </div>
+        }
+        </div>
+    </div>
+}
